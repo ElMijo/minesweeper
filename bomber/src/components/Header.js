@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Time from './Header/Time'
+import Mines from './Header/Mines'
 class Header extends Component {
   render() {
       const control = 'start';
@@ -9,7 +10,9 @@ class Header extends Component {
             <div className="collapse navbar-collapse">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#"></a>
+                        <div className="nav-link">
+                            <Mines quantity="5" />
+                        </div>
                     </li>
                 </ul>
                 <ul className="navbar-nav">
