@@ -19,8 +19,11 @@ class Time extends Component {
     }
 
     stop() {
-        clearInterval(this.counter);
-        this.setState({isStarted: false });
+        if (this.state.isStarted) {
+            clearInterval(this.counter);
+            this.setState({isStarted: false });
+
+        }
     }
 
     pad(value) {
