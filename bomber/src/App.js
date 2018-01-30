@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import Header from './components/Header'
 import Board from './components/Board'
 import ApiClient from './helpers/ApiClient'
-import logo from './logo.svg';
-// import './App.css';
 
 class App extends Component {
     constructor(props) {

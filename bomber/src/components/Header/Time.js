@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
+import { Events } from '../../helpers/EventEmitter'
 
 class Time extends Component {
+    componentWillMount() {
+        Events.once('minefield.click', this.start.bind(this));
+        Events.once('minefield.isMine', this.stop.bind(this));
+    }
     constructor(props) {
         super(props);
         this.counter = null;
@@ -22,7 +27,6 @@ class Time extends Component {
         if (this.state.isStarted) {
             clearInterval(this.counter);
             this.setState({isStarted: false });
-
         }
     }
 
@@ -32,8 +36,8 @@ class Time extends Component {
     }
 
     render() {
-        const seconds = this.state.counter % 60
-        const minutes = parseInt(this.state.counter / 60)
+        const seconds = this.state.counter % 60;
+        const minutes = parseInt(this.state.counter / 60, 10);
 
         return (
             <div>

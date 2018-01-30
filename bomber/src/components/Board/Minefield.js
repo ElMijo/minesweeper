@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
+import { Events } from '../../helpers/EventEmitter'
 
 class Minefield extends Component {
     constructor(props) {
         super(props);
-        const intValue = parseInt(props.value);
+        let intValue = parseInt(props.value, 10);
 
         this.state = {
             value: props.value,
@@ -16,7 +17,7 @@ class Minefield extends Component {
     }
 
     onClick(event) {
-        console.log(event);
+        Events.emit('minefield.click');
         if (!this.state.hasFlag) {
             this.setState({isAcive: true});
         }
@@ -24,12 +25,13 @@ class Minefield extends Component {
 
     render() {
         const { value, isMine, isNumber, isAcive, hasFlag } = this.state;
-        const style = { 'background-color': isAcive ? 'gray' : 'inherit'}
+        const style = { backgroundColor: isAcive ? 'gray' : 'inherit'}
         let content = ".";
         if (hasFlag) {
             content = <i className="fa fa-flag" aria-hidden="true"></i>
         } else if (isMine && isAcive) {
             content = <i className="fa fa-bomb" aria-hidden="true"></i>
+            Events.emit('minefield.isMine');
         } else if (isNumber && isAcive) {
             content = <b>{value}</b>
         }
